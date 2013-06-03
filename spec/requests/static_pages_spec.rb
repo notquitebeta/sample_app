@@ -2,52 +2,67 @@ require 'spec_helper'
 
 describe "StaticPages" do
 
+  let(:base_title) { "Ruby on Rails Tutorial Sample App" }
+
   describe "Home pages" do
+    let(:section) { 'Sample App' }
 
     it "should have the h1 'Sample App'" do
-      visit '/static_pages/home' #visit is a Capybara function
-      page.should have_selector('h1',
-                  :text => 'Sample App')
+      visit '/static_pages/home'
+      page.should have_selector('h1', :text => "#{section}")
     end
 
-    it "should have the title 'Home'" do
+    it "should have the title 'Sample App'" do
       visit '/static_pages/home'
-      page.should have_selector('title',
-          :text => "Ruby on Rails Tutorial Sample App | Home")
+      page.should have_selector('title', :text => "#{base_title} | Home")
     end
 
   end
 
   describe "Help page" do
-
+    let(:section) { 'Help' }
     it "should have the h1 'Help'" do
       visit '/static_pages/help' #visit is a Capybara function
       page.should have_selector('h1',
-                  :text => 'Help')
+                  :text => "#{section}")
     end
 
-    it "should have the title" do
+    it "should have the title 'Help'" do
       visit '/static_pages/help'
       page.should have_selector('title',
-          :text => "Ruby on Rails Tutorial Sample App | Help")
+          :text => "#{base_title} | #{section}")
     end
 
   end
 
   describe "About page" do
-
+    let(:section) {'About Us'}
     it "should have the h1 'About Us'" do
       visit '/static_pages/about' #visit is a Capybara function
       page.should have_selector('h1',
-                  :text => 'About Us')
+                  :text => "#{section}")
     end
 
     it "should have the title 'About Us'" do
       visit '/static_pages/about'
       page.should have_selector('title',
-          :text => "Ruby on Rails Tutorial Sample App | About Us")
+          :text => "#{base_title} | #{section}")
     end
 
   end
 
+  describe "Contact page" do
+    let(:section) {'Contact'}
+    it "should have the h1 'Contact'" do
+      visit '/static_pages/contact'
+      page.should have_selector('h1',
+                :text => "#{section}")
+    end
+
+    it "should have the title 'Contact'"  do
+      visit '/static_pages/contact'
+      page.should have_selector('title',
+        :text => "#{base_title} | #{section}")
+    end
+  end
 end
